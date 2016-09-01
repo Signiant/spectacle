@@ -5,6 +5,9 @@ module.exports = function(grunt, options, spec) {
 
       // Compile SCSS source files into the cache directory
       compass: {
+          options: {
+              raw: 'Encoding.default_external = \'utf-8\'\n'
+          },
           scss: {
               options: {
                   specify: options.appDir + '/stylesheets/spectacle.scss',
