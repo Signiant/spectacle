@@ -5,6 +5,6 @@
 --}}
 <h1>Paths</h1>
 
-{{#eachSorted paths}}
+{{#each paths}}
   {{>swagger/path pathItems=. path=@key}}
-{{/eachSorted}}
+{{/each}}

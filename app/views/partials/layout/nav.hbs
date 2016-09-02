@@ -14,7 +14,7 @@
 
   {{#if showTagSummary}}
     <h5>Operations</h5>
-    {{#eachSorted tags}}
+    {{#each tags}}
       <section>
         <a href="#tag-{{htmlId name}}">{{name}}</a>
         <ul>
@@ -31,10 +31,10 @@
           {{/each}}
         </ul>
       </section>
-    {{/eachSorted}}
+    {{/each}}
   {{else}}
     <h5>Paths</h5>
-    {{#eachSorted paths}}
+    {{#each paths}}
       <!-- <section>
         <a href="#path-{{htmlId @key}}">{{@key}}</a>
         <ul> -->
@@ -51,16 +51,16 @@
           {{/each}}
         <!-- </ul>
       </section> -->
-      {{#eachSorted .}}
+      {{#each .}}
           {{!swagger/operation . operation=. method=@key path=../path}}
-      {{/eachSorted}}
-    {{/eachSorted}}
+      {{/each}}
+    {{/each}}
   {{/if}}
 
   <h5>Schema Definitions</h5>
-  {{#eachSorted definitions}}
+  {{#each definitions}}
     <a href="#definition-{{htmlId @key}}">
       {{@key}}
     </a>
-  {{/eachSorted}}
+  {{/each}}
 </nav>

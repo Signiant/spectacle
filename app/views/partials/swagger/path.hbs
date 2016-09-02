@@ -6,6 +6,6 @@
 --}}
 
 <span id="path-{{htmlId path}}"></span>
-{{#eachSorted pathItems}}
+{{#each pathItems}}
     {{>swagger/operation . operation=. method=@key path=../path}}
-{{/eachSorted}}
+{{/each}}
