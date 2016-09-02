@@ -9,16 +9,21 @@ var formatModel = function(model, options) {
     var clonedModel = JSON.parse(JSON.stringify(model));
     Object.keys(clonedModel).forEach(function(propName) {
         var prop = clonedModel[propName];
-        if (prop.type) {
-            if (prop.type !== "object") {
-                clonedModel[propName] = prop.type;
-            } else {
-                clonedModel[propName] = formatModel(prop, options)
-            }
+        if (typeof prop.example !== 'undefined') {
+            clonedModel[propName] = prop.example
         }
-            
-        if (prop.format) {
-            clonedModel[propName] += ('(' + prop.format + ')');
+        else {
+            if (prop.type) {
+                if (prop.type !== "object") {
+                    clonedModel[propName] = prop.type;
+                } else {
+                    clonedModel[propName] = formatModel(prop, options)
+                }
+            }
+    
+            if (prop.format) {
+                clonedModel[propName] += ('(' + prop.format + ')');
+            }
         }
     })
     
