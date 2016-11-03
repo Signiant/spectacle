@@ -27,6 +27,9 @@
           --}}
         </dd>
       {{/if}}
+        {{#if items}}
+            {{>json-schema/array-items items}}
+        {{/if}}
     {{/each}}
   </dl>
 </section>

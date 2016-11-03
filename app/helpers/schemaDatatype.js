@@ -21,6 +21,10 @@ function dataType(value) {
     }
     if (value.items.type) {
       return dataType(value.items) + '[]';
+
+    } else if (value.items['$ref']) {
+      return value.items['$ref'].replace('#/definitions/', '') + '[]';
+
     } else {
       return 'object[]';
     }
