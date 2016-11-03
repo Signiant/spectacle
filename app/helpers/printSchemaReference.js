@@ -15,7 +15,13 @@ var formatModel = function(model, options) {
         else {
             if (prop.type) {
                 if (prop.type !== "object") {
-                    clonedModel[propName] = prop.type;
+                    if (prop.type === 'array') {
+                        var propModel = common.resolveSchemaReference(prop.items['$ref'], options.data.root);
+                        clonedModel[propName] = [formatModel(propModel, options)];
+                    } else {
+                        clonedModel[propName] = prop.type;
+                    }
+
                 } else {
                     clonedModel[propName] = formatModel(prop, options)
                 }
@@ -23,6 +29,11 @@ var formatModel = function(model, options) {
     
             if (prop.format) {
                 clonedModel[propName] += ('(' + prop.format + ')');
+            }
+
+            if (prop['$ref']) {
+                var propModel = common.resolveSchemaReference(prop['$ref'], options.data.root);
+                clonedModel[propName] = formatModel(propModel, options);
             }
         }
     })
