@@ -246,10 +246,10 @@ table.table {
   font-weight: lighter;
   font-size: small;
   &:before {
-    content: '(default: "';
+    content: '(default: ';
   }
   &:after {
-    content: '")';
+    content: ')';
   }
 }
 

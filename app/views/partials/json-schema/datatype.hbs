@@ -44,11 +44,20 @@
 </span>
 
 {{!-- Default values (for non-enum types) --}}
-{{~#unless enum}}
-  {{~#if default}}
-    <span class="json-property-default-value">{{~default}}</span>
-  {{/if}}
-{{~/unless}}
+{{#unless enum}}
+  {{#ifExists default}}
+      {{#ifTypeOf default "string"}}
+          <span class="json-property-default-value">"{{default}}"</span>
+      {{else}}
+          {{#ifArray default}}
+              <span class="json-property-default-value">[{{default}}]</span>
+          {{else}}
+              <span class="json-property-default-value">{{default}}</span>
+          {{/ifArray}}
+      {{/ifTypeOf}}
+
+  {{/ifExists}}
+{{/unless}}
 {{#if minLength}}
   <span class="json-property-range" title="String length limits">
     {{#if maxLength}}
