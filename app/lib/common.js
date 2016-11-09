@@ -2,6 +2,7 @@ var cheerio = require("cheerio");
 // var entities = require("entities");
 var marked = require("marked");
 var highlight = require('highlight.js');
+var formatModel = require('../helpers/formatModel');
 
 var common = {
   highlight: function(code, name) {
@@ -37,29 +38,7 @@ var common = {
      return html;
   },
 
-  printSchema: function(value) {
-      if (!value) {
-          return '';
-      }
-      var schemaString = require("json-stable-stringify")(value, { space: 2 });
 
-      // Add an extra CRLR before the code so the postprocessor can determine
-      // the correct line indent for the <pre> tag.
-      var $ = cheerio.load(marked("```json\r\n" + schemaString + "\n```"));
-      var definitions = $('span:not(:has(span)):contains("#/definitions/")');
-      definitions.each(function(index, item) {
-          var ref = $(item).html();
-          var refLink = ref.replace(/&quot;/g, "").replace('#/definitions/', '#definition-')
-          // TODO: This should be done in a template
-          $(item).html("<a href=" + refLink + ">" + ref + "</a>");
-      });
-
-      // return '<pre><code class="hljs lang-json">' +
-      //   this.highlight(schemaString, 'json') +
-      //   '</code></pre>';
-
-      return $.html();
-  },
 
   resolveSchemaReference: function(reference, json) {
     reference = reference.trim();
