@@ -245,12 +245,6 @@ table.table {
 .json-property-default-value {
   font-weight: lighter;
   font-size: small;
-  &:before {
-    content: '(default: ';
-  }
-  &:after {
-    content: ')';
-  }
 }
 
 .json-property-enum-item {

@@ -47,12 +47,12 @@
 {{#unless enum}}
   {{#ifExists default}}
       {{#ifTypeOf default "string"}}
-          <span class="json-property-default-value">"{{default}}"</span>
+          <span class="json-property-default-value">(default: "{{default}}")</span>
       {{else}}
           {{#ifArray default}}
-              <span class="json-property-default-value">[{{default}}]</span>
+              <span class="json-property-default-value">(default: [{{default}}])</span>
           {{else}}
-              <span class="json-property-default-value">{{default}}</span>
+              <span class="json-property-default-value">(default: {{default}})</span>
           {{/ifArray}}
       {{/ifTypeOf}}
 
