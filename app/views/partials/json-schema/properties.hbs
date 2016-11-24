@@ -20,16 +20,19 @@
       {{#if description}}
         <dd>
           {{md description}}
-          {{!-- Show details of nested property schema
-          <div class="json-inner-schema">
-            {{>json-schema/body $ref="" description=""}}
-          </div>
-          --}}
         </dd>
       {{/if}}
         {{#if items}}
             {{>json-schema/array-items items}}
         {{/if}}
+        {{#ifeq type "object"}}
+            {{#if enum}}
+            {{else}}
+                <div class="json-inner-schema">
+                    {{>json-schema/body $ref="" description=""}}
+                </div>
+            {{/if}}
+        {{/ifeq}}
     {{/each}}
   </dl>
 </section>
