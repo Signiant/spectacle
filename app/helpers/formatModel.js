@@ -15,8 +15,12 @@ var formatModel = function(model, options) {
             if (prop.type) {
                 if (prop.type !== "object") {
                     if (prop.type === 'array') {
-                        var propModel = common.resolveSchemaReference(prop.items['$ref'], options.data.root);
-                        clonedModel[propName] = [formatModel(propModel, options)];
+                        if(prop.items['$ref']) {
+                            var propModel = common.resolveSchemaReference(prop.items['$ref'], options.data.root);
+                            clonedModel[propName] = [formatModel(propModel, options)];
+                        } else {
+                            clonedModel[propName] = [formatModel(prop.items, options)];
+                        }
                     } else {
                         clonedModel[propName] = prop.type;
                     }
