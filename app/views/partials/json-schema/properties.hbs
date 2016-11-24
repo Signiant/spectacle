@@ -23,7 +23,9 @@
         </dd>
       {{/if}}
         {{#if items}}
-            {{>json-schema/array-items items}}
+            <div class="json-inner-schema">
+                {{>json-schema/array-items items}}
+            </div>
         {{/if}}
         {{#ifeq type "object"}}
             {{#if enum}}
